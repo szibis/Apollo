@@ -53,11 +53,11 @@
     }
   ],
   "push": {
-    "name": "Enxebre/apollo-mesos-ubuntu-14-04-amd64"
+    "name": "capgemini/apollo-mesos-ubuntu-14-04-amd64"
   },
   "post-processors": [{
     "type": "atlas",
-    "artifact": "Enxebre/apollo-mesos-ubuntu-14.04-amd64",
+    "artifact": "capgemini/apollo-mesos-ubuntu-14.04-amd64",
     "artifact_type": "digitalocean.image",
     "metadata": {
       "created_at": "{{timestamp}}",
