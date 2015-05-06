@@ -1,22 +1,29 @@
----
-# tasks file for marathon
-- name: Set Marathon hostname
-  copy:
-    content: "{{marathon_local_address}}"
-    dest: /etc/marathon/conf/hostname
-    mode: 0644
-  sudo: yes
+# Install (docker-py) python package as is a docker module dependency.
+- pip: name=docker-py version=1.1.0
 
-- name: remove marathon override
-  command: /bin/rm -f /etc/init/marathon.override
+# tasks for running docker marathon
+- name: run marathon container
+  when: marathon_enabled == "Y"
+  docker:
+    name: marathon
+    image: "{{ marathon_image }}"
+    state: started
+    restart_policy: always
+    net: host
+    command: "--master {{marathon_zk_peers}} --zk {{marathon_zk_peers}}"
+    hostname: "{{ hostname }}"
+    volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
 
-- name: ensure marathon is running (and enable it at boot)
-  service: name=marathon state=started enabled=yes
-
-- name: Set Marathon consul service definition
-  sudo: yes
-  template:
-    src: marathon-consul.j2
-    dest: "{{ consul_dir }}/marathon.json"
-  notify:
-    - Restart consul
+# tasks for stoping docker marathon
+- name: stop marathon container
+  when: marathon_enabled == "N"
+  docker:
+    name: marathon
+    image: "{{ marathon_image }}"
+    state: stopped
+    restart_policy: no
+    net: host
+    hostname: "{{ hostname }}"
+    volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
