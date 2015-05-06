@@ -3,7 +3,7 @@
 
 # tasks for running docker marathon
 - name: run marathon container
-  when: marathon_enabled == "Y"
+  when: framework_marathon_enabled == "Y"
   docker:
     name: marathon
     image: "{{ marathon_image }}"
@@ -17,7 +17,7 @@
 
 # tasks for stoping docker marathon
 - name: stop marathon container
-  when: marathon_enabled == "N"
+  when: framework_marathon_enabled == "N"
   docker:
     name: marathon
     image: "{{ marathon_image }}"

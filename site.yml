@@ -5,11 +5,6 @@
     - consul
 
 - hosts: mesos_masters
-  vars_prompt:
-    - name: marathon_enabled
-      prompt: "Do you want to deploy the marathon framework?(Y/N)"
-      private: no
-      default: "Y"
   roles:
     - { role: mesos, mesos_install_mode: "master", tags: ["mesos-master"] }
     - zookeeper

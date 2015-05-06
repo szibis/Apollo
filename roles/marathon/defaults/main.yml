@@ -14,7 +14,7 @@ marathon_peers_nodes: "
       {% do marathon_peers.append(current_host) %}
     {%- endif -%}
   {%- endfor -%}
-  zk://{{ marathon_peers|join(',') }}
-"
-marathon_master_peers: "{{marathon_peers_nodes}}/mesos"
-marathon_zk_peers: "{{marathon_peers_nodes}}/marathon"
+  zk://{{ marathon_peers|join(',') }}"
+
+marathon_master_peers: "{%- set master_peers = marathon_peers_nodes + '/mesos' -%} {{ master_peers }}"
+marathon_zk_peers: "{%- set master_peers = marathon_peers_nodes + '/marathon' -%} {{ master_peers }}"

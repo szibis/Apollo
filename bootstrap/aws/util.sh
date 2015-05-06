@@ -75,7 +75,8 @@ ansible_playbook_run() {
       consul_dc=${CONSUL_DC} \
       consul_atlas_infrastructure=${ATLAS_INFRASTRUCTURE} \
       consul_atlas_join=true \
-      consul_atlas_token=${ATLAS_TOKEN}" \
+      consul_atlas_token=${ATLAS_TOKEN} \
+      framework_marathon_enabled=${FRAMEWORK_MARATHON_ENABLED}" \
       --sudo site.yml
   popd
 }
