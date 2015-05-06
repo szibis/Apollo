@@ -5,7 +5,7 @@ hostname: "{{ ansible_all_ipv4_addresses }}"
 consul_dir: /etc/consul.d
 marathon_server_zk_group: marathon_servers
 marathon_local_address: "{{ansible_eth0.ipv4.address}}"
-marathon_image: "mesosphere/marathon:v0.8.1"
+marathon_image: "mesosphere/marathon:{{ framework_marathon_version }}"
 marathon_peers_nodes: "
   {%- set marathon_peers = [] -%}
   {%- for host in groups[marathon_server_zk_group] -%}
