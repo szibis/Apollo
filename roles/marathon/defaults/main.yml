@@ -6,11 +6,29 @@ consul_dir: /etc/consul.d
 marathon_server_group: marathon_servers
 marathon_local_address: "{{ansible_eth0.ipv4.address}}"
 marathon_image: "mesosphere/marathon:v0.8.0"
+marathon_master_peers: "
+  {%- set marathon_peers = [] -%}
+  {%- for host in groups[marathon_server_group] -%}
+    {%- if host not in marathon_peers -%}
+      {%- if host == inventory_hostname -%}
+      	{%- set current_host = hostvars[host]['ansible_eth0']['ipv4']['address'] + ':' + zookeeper_client_port + '/mesos' -%}	
+      {%- else -%}
+      	{%- set current_host = hostvars[host]['ansible_eth0']['ipv4']['address'] + ':' + zookeeper_client_port -%}
+      {%- endif -%}
+      {% do marathon_peers.append(current_host) %}
+    {%- endif -%}
+  {%- endfor -%}
+  zk://{{ marathon_peers|join(',') }}
+"
 marathon_zk_peers: "
   {%- set marathon_peers = [] -%}
   {%- for host in groups[marathon_server_group] -%}
     {%- if host not in marathon_peers -%}
-      {%- set current_host = hostvars[host]['ansible_eth0']['ipv4']['address'] + ':' + zookeeper_client_port -%}
+      {%- if host == inventory_hostname -%}
+      	{%- set current_host = hostvars[host]['ansible_eth0']['ipv4']['address'] + ':' + zookeeper_client_port + '/marathon' -%}	
+      {%- else -%}
+      	{%- set current_host = hostvars[host]['ansible_eth0']['ipv4']['address'] + ':' + zookeeper_client_port -%}
+      {%- endif -%}
       {% do marathon_peers.append(current_host) %}
     {%- endif -%}
   {%- endfor -%}

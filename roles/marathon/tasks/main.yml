@@ -10,7 +10,7 @@
     state: started
     restart_policy: always
     net: host
-    command: "--master {{marathon_zk_peers}} --zk {{marathon_zk_peers}}"
+    command: "--master {{marathon_master_peers}} --zk {{marathon_zk_peers}}"
     hostname: "{{ hostname }}"
     volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
