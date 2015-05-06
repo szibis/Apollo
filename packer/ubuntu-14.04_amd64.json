@@ -3,7 +3,6 @@
     "ssh_name": "vagrant",
     "ssh_pass": "vagrant",
     "hostname": "ubuntu",
-    "version": "0.22.1",
     "mesos_version": "0.22.0-1.0.ubuntu1404",
     "consul_version": "0.5.0",
     "weave_version": "v0.10.0",
@@ -83,7 +82,7 @@
       "type": "vagrant-cloud",
       "box_tag": "capgemini/apollo-mesos",
       "access_token": "{{user `access_token`}}",
-      "version": "{{user `version`}}"
+      "version": "{{timestamp}}"
     }]
   ]
 }

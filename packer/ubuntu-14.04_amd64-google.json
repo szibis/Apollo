@@ -61,7 +61,7 @@
     "artifact_type": "googlecompute.image",
     "metadata": {
       "created_at": "{{timestamp}}",
-      "version": "{{user `version`}}"
+      "version": "{{timestamp}}"
     }
   }]
 }

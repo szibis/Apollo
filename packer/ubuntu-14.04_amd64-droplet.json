@@ -5,8 +5,7 @@
     "digitalocean_size": "512MB",
     "mesos_version": "0.22.0-1.0.ubuntu1404",
     "consul_version": "0.5.0",
-    "weave_version": "v0.10.0",
-    "version": "0.22.1"
+    "weave_version": "v0.10.0"
   },
   "builders": [{
     "type": "digitalocean",
@@ -61,7 +60,7 @@
     "artifact_type": "digitalocean.image",
     "metadata": {
       "created_at": "{{timestamp}}",
-      "version": "{{user `version`}}"
+      "version": "{{timestamp}}"
     }
   }]
 }
