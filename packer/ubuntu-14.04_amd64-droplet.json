@@ -6,8 +6,7 @@
     "mesos_version": "0.22.0-1.0.ubuntu1404",
     "consul_version": "0.5.0",
     "weave_version": "v0.10.0",
-    "version": "0.22.1",
-    "company_name": "Enxebre"
+    "version": "0.22.1"
   },
   "builders": [{
     "type": "digitalocean",
@@ -54,11 +53,11 @@
     }
   ],
   "push": {
-    "name": "capgemini/apollo-mesos-ubuntu-14-04-amd64"
+    "name": "Enxebre/apollo-mesos-ubuntu-14-04-amd64"
   },
   "post-processors": [{
     "type": "atlas",
-    "artifact": "cagemini/apollo-mesos-ubuntu-14.04-amd64",
+    "artifact": "Enxebre/apollo-mesos-ubuntu-14.04-amd64",
     "artifact_type": "digitalocean.image",
     "metadata": {
       "created_at": "{{timestamp}}",
