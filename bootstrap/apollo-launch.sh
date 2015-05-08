@@ -6,7 +6,6 @@ set -o pipefail
 
 APOLLO_ROOT=$(dirname "${BASH_SOURCE}")/..
 
-source "${APOLLO_ROOT}/bootstrap/apollo-plugins.sh"
 source "${APOLLO_ROOT}/bootstrap/apollo-env.sh"
 source "${APOLLO_ROOT}/bootstrap/${APOLLO_PROVIDER}/util.sh"
 
