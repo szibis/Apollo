@@ -8,7 +8,7 @@
   roles:
     - { role: mesos, mesos_install_mode: "master", tags: ["mesos-master"] }
     - zookeeper
-    - marathon
+    - { role: '../plugins/marathon' }
   vars:
     consul_is_server: true
 

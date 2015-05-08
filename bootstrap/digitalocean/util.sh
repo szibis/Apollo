@@ -18,18 +18,9 @@ verify_prereqs() {
 
 apollo_launch() {
   terraform_apply
+  get_ansible_requirements
   ansible_playbook_run
   open_urls
-}
-
-get_apollo_ansible_variables() {
-  local plugin_namespace='APOLLO_PLUGIN_'
-  local var_list=()
-  for i in $(env | grep ${plugin_namespace}); do
-   var=${i#${plugin_namespace}}
-   var_list+=(-var "$var")
-  done
-  echo ${var_list[@]}
 }
 
 ansible_playbook_run() {
@@ -41,7 +32,7 @@ ansible_playbook_run() {
       consul_atlas_infrastructure=${ATLAS_INFRASTRUCTURE} \
       consul_atlas_join=true \
       consul_atlas_token=${ATLAS_TOKEN} \
-      $(get_apollo_ansible_variables)" \
+      $(get_plugin_variables)" \
       -v \
     site.yml
   popd

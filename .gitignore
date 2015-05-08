@@ -9,3 +9,4 @@ packer/build
 .wercker
 *.cache
 ssh.config
+plugins
