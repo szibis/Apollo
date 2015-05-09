@@ -27,7 +27,7 @@
 
 - name: configure weave bridge for docker
   sudo: yes
-  lineinfile: "dest=/etc/default/docker state=present regexp=^DOCKER_OPTS= line='DOCKER_OPTS=\"--bridge=weave --fixed-cidr={{ weave_docker_subnet }}\"'"
+  lineinfile: "dest=/etc/default/docker state=present regexp=^DOCKER_OPTS= line='DOCKER_OPTS=\"{{ weave_docker_opts }}\"'"
   notify:
     - Restart docker
     - Weave launch

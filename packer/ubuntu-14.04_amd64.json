@@ -3,6 +3,7 @@
     "ssh_name": "vagrant",
     "ssh_pass": "vagrant",
     "hostname": "ubuntu",
+    "version": "0.22.0",
     "mesos_version": "0.22.0-1.0.ubuntu1404",
     "consul_version": "0.5.0",
     "weave_version": "v0.10.0",
@@ -74,7 +75,7 @@
   "post-processors": [
     [{
       "type": "vagrant",
-      "output": "build/ubuntu-14.04_amd64_{{.Provider}}/apollo-mesos-{{user `mesos_version`}}_amd64_{{.Provider}}.box",
+      "output": "build/ubuntu-14.04_amd64_{{.Provider}}/apollo-mesos-ubuntu-14.04-amd64-{{.Provider}}.box",
       "keep_input_artifact": true,
       "compression_level": 9
     },
